@@ -33,4 +33,7 @@ There are currently 3 main programs, you can see the comments in each file for m
 * My Dubins repo: https://github.com/EwingKang/Dubins-Curve-For-MATLAB 
 * collision check1: https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect 
 * collision check2: http://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/ 
- 
+   
+# TODOS
+* RRT+Dubins+collisioncheck
+* tree growing animation
