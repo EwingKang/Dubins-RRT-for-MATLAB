@@ -26,7 +26,7 @@ There are currently 3 main programs, you can see the comments in each file for m
    RRT with obstacles and collision check   
  
 # References 
-* Steven M. LaValle "Rapidly-Exploring Random Trees: A New Tool for Path % Planning" 1998, tech. rpt C.S.Dept, Iowa State U 
+* Steven M. LaValle "Rapidly-Exploring Random Trees: A New Tool for Path Planning" 1998, tech. rpt C.S.Dept, Iowa State U 
 * Sertac Karaman and Emilio Frazzoli "Sampling-based algorithms for optimal motion planning",2011, The International Journal of Robotics Research  
 * Yoshiaki Kuwata, Gaston A. Fiore, Justin Teo, Emilio Frazzoli, and Jonathan P. How, "Motion Planning for Urban Driving using RRT" 
 * RRT wikipedia: https://en.wikipedia.org/wiki/Rapidly-exploring_random_tree 
