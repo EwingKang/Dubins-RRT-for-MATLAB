@@ -4,7 +4,7 @@
 RRT (Rapidly-Exploring Random Trees) using Dubins curve, with collision check in MATLAB
  
 # Intro
-RRT, the Rapidly-Exploring Random Trees is a ramdomized method of exploring within dimensions. This method can effectively generate a path to reach any point within certain limited steps due to its random characteristics. This method is proprosed by LaValle, Steven M. in October 1998, in his technical report to Computer Science Department of Iowa State University as "Rapidly-exploring random trees: A new tool for path planning" Today, multiple variation of RRT method is widely applied with path planning problem among UAVs for ground based, aerial, and marinetime vehicles. 
+RRT, the Rapidly-Exploring Random Trees is a ramdomized method of exploring within dimensions. This method can effectively generate a path to reach any point within certain limited steps due to its random characteristics. This method is proprosed by LaValle, Steven M. in October 1998, in his technical report to Computer Science Department of Iowa State University as "Rapidly-exploring random trees: A new tool for path planning" Today, multiple variation of RRT method is widely applied with path planning problem among UAVs for ground based, aerial, and marinetime vehicles.   
 In RRT_Dubins.m, the paths connecting each points, or the "edges" to the "vertices" are replaced with Dubins curve. This is a very common practice when dealing with dynamic system. Specifically for non-holonomic system, such as cars, airplanes or ships. Replacements of Dubins curve means the branches growing out of a vertex is always smooth in the sense tengency. This makes the path generated more feassibly then the original straight line connection style if taking dynamics into consideration.  
  
  
