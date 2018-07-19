@@ -31,12 +31,12 @@ function path = dubins_path_draw(param,segments)
 
     % Generate the target configuration
     types = DIRDATA(param.type, :);
-    param1 = param.SEG_param(1);
-    param2 = param.SEG_param(2);
-    param3 = param.SEG_param(3);
+    param1 = param.seg_param(1);
+    param2 = param.seg_param(2);
+    param3 = param.seg_param(3);
     r = param.r;
     
-    curve_cut = sum(param.SEG_param(1:3))/segments;
+    curve_cut = sum(param.seg_param(1:3))/segments;
     
     t1 = 0:curve_cut:param1;
     if( types(1) == L_SEG )

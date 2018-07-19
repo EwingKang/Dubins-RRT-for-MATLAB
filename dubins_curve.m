@@ -1,16 +1,18 @@
-% This function handles the interface to dubins_core.m to give a more 
-% intuative tool within MATLAB
-% Input: 
-%   p1 / p2: two row vector that defines a 2-D point and starting/ending 
-%            direction. e.g. [x, y, theta], 
-%   r:  turning radius, set <=0 to automatically determined
-%   stepsize: distance between each points used for graphics
-%   quiet: suppressed any output for convinient function implementation
-%          1 for no plotting/printing run duration, set default by 0 or
-%          left blank
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% DUBINS_CURVE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Find the Dubins path (shortest curve) between two points.
+%   PATH = DUBINS_CURVE(P1, P2, r, stepsize) finds the shortest curve that
+%   connects two points in the Euclidean plane with a constraint of the
+%   curvature of the path. The start and finish orientations P1 and P2 are
+%   defined as [x, y, theta]. The turning radius (r) and stepsize will be
+%   defined automatically if their value is <= 0. The output PATH is an [mx3]
+%   array consisting of m rows of [x, y, theta] values.  
 %
-% Output: the points data in stacked row vector
+%   PATH = DUBINS_CURVE(P1, P2, r, stepsize, quiet) performs the same as above,
+%   however if quiet == true, then no plots of command window output will be
+%   generated. Ommitting this input will result in quiet = false/0.
 %
+%   This function handles the interface to dubins_core.m to give a more
+%   intuitive tool for finding the Dubins path. 
 % Reference:
 %       https://github.com/AndrewWalker/Dubins-Curves#shkel01
 %       Shkel, A. M. and Lumelsky, V. (2001). "Classification of the Dubins
@@ -20,27 +22,12 @@
 % MATLAB-lization: Ewing Kang
 % Date: 2016.2.28
 % contact: f039281310 [at] yahoo.com.tw
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Copyright (c) 2016, Ewing Kang                                                 % 
-%                                                                                %
-% Permission is hereby granted, free of charge, to any person obtaining a copy   %
-% of this software and associated documentation files (the "Software"), to deal  %
-% in the Software without restriction, including without limitation the rights   %
-% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell      %
-% copies of the Software, and to permit persons to whom the Software is          %  
-% furnished to do so, subject to the following conditions:                       %
-%                                                                                %
-% The above copyright notice and this permission notice shall be included in     %
-% all copies or substantial portions of the Software.                            %
-%                                                                                %
-% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR     %
-% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,       %
-% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE    %
-% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER         %
-% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  %
-% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN      %
-% THE SOFTWARE.                                                                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copyright (c) 2016 Ewing Kang                                           %
+% Released under GPLv3 license                                            %
+% This function is a MATLAB re-written from Andrew Walker's work, which   %
+% was originally distributed under MIT license in C language              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function path = dubins_curve(p1, p2, r, stepsize, quiet)
     
     %%%%%%%%%%%%%%%%%%%%%%%%% DEFINE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,15 +56,21 @@ function path = dubins_curve(p1, p2, r, stepsize, quiet)
             
     % the return parameter from dubins_core
     % param.p_init = p1;              % the initial configuration
-    % param.SEG_param = [0, 0, 0];    % the lengths of the three segments
+    % param.seg_param = [0, 0, 0];    % the lengths of the three segments
     % param.r = r;                    % model forward velocity / model angular velocity turning radius
     % param.type = -1;                % path type. one of LSL, LSR, ... 
     %%%%%%%%%%%%%%%%%%%%%%%%% END DEFINE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    % if quiet is not defined, assign default to not quiet
-    if nargin < 5 
-        quiet = 0;
-    elseif ~quiet
+    % Handle inputs.
+    if nargin < 3
+        error('Function requires at least two inputs.');
+    elseif nargin < 4
+        stepsize = 0;
+    elseif nargin < 5 
+        quiet = 0;  %Default/undefined is not quiet
+    end
+    
+    if ~quiet
         close(findobj('type','figure','name','Dubins curve'));
         tic;
     end
@@ -105,7 +98,7 @@ function path = dubins_curve(p1, p2, r, stepsize, quiet)
 end
 
 function path = dubins_path_sample_many( param, stepsize)
-    if param.STATUS < 0
+    if param.flag < 0
         path = 0;
         return
     end
@@ -122,9 +115,9 @@ function path = dubins_path_sample_many( param, stepsize)
 end
 
 function length = dubins_length(param)
-    length = param.SEG_param(1);
-    length = length + param.SEG_param(2);
-    length = length + param.SEG_param(3);
+    length = param.seg_param(1);
+    length = length + param.seg_param(2);
+    length = length + param.seg_param(3);
     length = length * param.r;
 end
 
@@ -138,7 +131,7 @@ end
  * @returns    - -1 if 't' is not in the correct range
 %}
 function end_pt = dubins_path_sample(param, t)
-    if( t < 0 || t >= dubins_length(param) || param.STATUS < 0)
+    if( t < 0 || t >= dubins_length(param) || param.flag < 0)
         end_pt = -1;
         return;
     end
@@ -176,8 +169,8 @@ function end_pt = dubins_path_sample(param, t)
 
     % Generate the target configuration
     types = DIRDATA(param.type, :);
-    param1 = param.SEG_param(1);
-    param2 = param.SEG_param(2);
+    param1 = param.seg_param(1);
+    param2 = param.seg_param(2);
     mid_pt1 = dubins_segment( param1, p_init, types(1) );
     mid_pt2 = dubins_segment( param2, mid_pt1,  types(2) );
     

@@ -1,4 +1,4 @@
-%%%%% INFORMATION %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INFORMATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This function is needed by <RRT_Dubins.m> to search the "nearest" vertex
 % to the newly generated one in the sense of Dubins.
 % The method is simply exhausive search, connect the vertex to everyone in
@@ -10,43 +10,25 @@
 % of effert and probably will make the code harder to read. Regarding a
 % MATLAB prototype code I think it's more important to achieve
 % functional-complete.
-%
-%%%%% PROGRAM %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROGRAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Input:
 %   <>vertecies: target list of vertices
 %   <>rand: initial vertex
 %   <>rad turning raduis of the Dubins
-%
 % Output:
 %   <>ind_clostest: index to the nearest vertex within the list
 %   <>param_clostest: Dubins parameter from the nearest vertex to the
 %     initial vertex
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Author: Ewing Kang
 % Date: 2016.2.28
 % contact: f039281310 [at] yahoo.com.tw
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Copyright (c) 2016, Ewing Kang                                                 % 
-%                                                                                %
-% Permission is hereby granted, free of charge, to any person obtaining a copy   %
-% of this software and associated documentation files (the "Software"), to deal  %
-% in the Software without restriction, including without limitation the rights   %
-% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell      %
-% copies of the Software, and to permit persons to whom the Software is          %  
-% furnished to do so, subject to the following conditions:                       %
-%                                                                                %
-% The above copyright notice and this permission notice shall be included in     %
-% all copies or substantial portions of the Software.                            %
-%                                                                                %
-% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR     %
-% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,       %
-% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE    %
-% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER         %
-% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  %
-% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN      %
-% THE SOFTWARE.                                                                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copyright (c) 2016 Ewing Kang                                           %
+% Released under GPLv3 license                                            %
+% This function is a MATLAB re-written from Andrew Walker's work, which   %
+% was originally distributed under MIT license in C language              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [ind_clostest,param_clostest] = dubins_searchn(vertecies, rand, rad)
 total = size(vertecies,1);
 
@@ -71,6 +53,6 @@ end
 
 % calculate length of the Dubins
 function length = dubins_length(param)
-    length = param.SEG_param(1) + param.SEG_param(2) + param.SEG_param(3);
+    length = param.seg_param(1) + param.seg_param(2) + param.seg_param(3);
     length = length * param.r;
 end
