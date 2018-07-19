@@ -1,4 +1,4 @@
-%%%%% INTRODUCTION %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % RRT, the Rapidly-Exploring Random Trees is a ramdomized method of 
 % exploring within dimensions. This method can effectively generate a path
 % to reach any point within certain limited steps due to its random
@@ -10,17 +10,16 @@
 % Today, multiple variation of RRT method is widely applied with path
 % planning problem among UAVs for ground based, aerial, and marinetime
 % vehicles.
-%
-%%%% REFERENCES %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % <>Steven M. LaValle "Rapidly-Exploring Random Trees: A New Tool for Path 
-% Planning" 1998, tech. rpt C.S.Dept, Iowa State U
+%   Planning" 1998, tech. rpt C.S.Dept, Iowa State U
 % <>Sertac Karaman and Emilio Frazzoli "Sampling-based algorithms for 
-% optimal motion planning",2011, The International Journal of Robotics Research
+%   optimal motion planning",2011, The International Journal of Robotics 
+%   Research
 % <>Yoshiaki Kuwata, Gaston A. Fiore, Justin Teo, Emilio Frazzoli, and 
-% Jonathan P. How, "Motion Planning for Urban Driving using RRT"
+%   Jonathan P. How, "Motion Planning for Urban Driving using RRT"
 % <>https://en.wikipedia.org/wiki/Rapidly-exploring_random_tree
-%
-%%%%% ALGORITHM %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ALGORITHM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % For the sake of simplicity, I will discuss the algorithm only with 2-D
 % planes. The problem is, given a starting point and limited boundre, how 
 % do we reach everypoint within the area systematically?
@@ -28,12 +27,11 @@
 % are 4 steps. 
 %   1. generate a random point, i.e, a "vertex"
 %   2. find the closest vertex from the existing list
-%   3. connect the new vertex to the closest existing vertex, so called "edge"
+%   3. connect an "edge" from the closest existing vertex to the new vertex
 %   4. append the newly generated vertex and edge to the known list
 % As the iteration goes, it looks like a tree consists of edges is growing
 % within the boundry and thus named so.
-%
-%%%%% PROGRAM %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROGRAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % All the parameters are commented throughly and setup within the progrm, 
 % please see main program below.
 % Basically, you need to define a rectangle area for program to grow RRT.
@@ -60,27 +58,10 @@
 % Author: Ewing Kang
 % Date: 2016.2.28
 % contact: f039281310 [at] yahoo.com.tw
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Copyright (c) 2016, Ewing Kang                                                 % 
-%                                                                                %
-% Permission is hereby granted, free of charge, to any person obtaining a copy   %
-% of this software and associated documentation files (the "Software"), to deal  %
-% in the Software without restriction, including without limitation the rights   %
-% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell      %
-% copies of the Software, and to permit persons to whom the Software is          %  
-% furnished to do so, subject to the following conditions:                       %
-%                                                                                %
-% The above copyright notice and this permission notice shall be included in     %
-% all copies or substantial portions of the Software.                            %
-%                                                                                %
-% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR     %
-% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,       %
-% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE    %
-% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER         %
-% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  %
-% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN      %
-% THE SOFTWARE.                                                                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copyright (c) 2016 Ewing Kang      %
+% Distributed under GPLv3 license    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 close(findobj('type','figure','name','RRT basic'));
 close(findobj('type','figure','name','RRT growing'));
 

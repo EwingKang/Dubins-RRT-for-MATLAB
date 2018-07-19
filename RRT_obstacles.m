@@ -1,12 +1,11 @@
-%%%%% INTRODUCTION %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Please see "RRT.m" for more information about RRT.
 % This is the third phase of the RRT path planning project.
 % In this program, in addition to a simple RRT, some "forbidden zone" is
 % defined. This is to simulate "obstacles" when performing path planning.
 % This program deomonstrate the ability to get a path plan around obstacles 
 % in very short amount of time.
-%
-%%%%% ALGORITHM %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% ALGORITHM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The program is almost identical to the RRT:
 %   1. generate a random point with an angle
 %   2. find the closest vertex from the existing list.
@@ -16,8 +15,7 @@
 %
 % The check of forbidden area is done by checking line intersection. For 
 % more information, please see <chk_collision.m>
-%
-%%%%% PROGRAM %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROGRAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % All the parameters are commented throughly and setup within the progrm, 
 % please see main program below.
 % Defines:
@@ -32,44 +30,24 @@
 %   <>edges: starting and ending of each edges, note edges(i) corresponds
 %     to vertecies(i+1), because vertecies(1) is the original point
 %   <>edges.param: the Dubins parameter connecting both points
-%   <>ind_nearest(i)(i): index to the nearest point. 
-%     vertecies(ind_nearest(i)(i)(i)) is the nearest to the vertecies(i+1)
-%
-%%%% IMPORTANT %%%%%
-% ***The actual segment count might be less then the iteration
-% times. Sometimes, it is possible to have two points that is impossible to
-% interconnect with Dubins. When this happened, that attempt will be
-% discarded.
-% ***Please consider numercial errors see more info at <RRT.m> 
-%
+%   <>ind_nearest(i): index to the nearest point. 
+%     vertecies(ind_nearest(i)(i)) is the nearest to the vertecies(i+1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% IMPORTANT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ** The actual segment count might be less then the iteration
+%    times because those violate collition test will not be appended
+% ** Please consider numercial errors see more info at <RRT.m> 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Author: Ewing Kang
 % Date: 2016.2.28
 % contact: f039281310 [at] yahoo.com.tw
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Copyright (c) 2016, Ewing Kang                                                 % 
-%                                                                                %
-% Permission is hereby granted, free of charge, to any person obtaining a copy   %
-% of this software and associated documentation files (the "Software"), to deal  %
-% in the Software without restriction, including without limitation the rights   %
-% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell      %
-% copies of the Software, and to permit persons to whom the Software is          %  
-% furnished to do so, subject to the following conditions:                       %
-%                                                                                %
-% The above copyright notice and this permission notice shall be included in     %
-% all copies or substantial portions of the Software.                            %
-%                                                                                %
-% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR     %
-% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,       %
-% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE    %
-% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER         %
-% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  %
-% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN      %
-% THE SOFTWARE.                                                                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copyright (c) 2016 Ewing Kang                                           %
+% Released under GPLv3 license                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 close(findobj('type','figure','name','RRT basic'));
 close(findobj('type','figure','name','RRT growing'));
 
+%%%%%%%%%%%%%%%%%%%% User Configuration Area %%%%%%%%%%%%%%%%%%%%
 % define the map
 height = 20;
 width = 20;
@@ -82,7 +60,7 @@ iterations = 1000;
 % define the obstacles using polygones, should be a cell stack of arrays.
 poly = { [-4,-4; -1.5, -4; 0, -2.5; -0.5, -1; -3, 0],...
          [0,3; 3,3; 3, 6; 4, 6; 1.5, 8; -1, 6; 0, 6] };
-     
+%%%%%%%%%%%%%%%%%%%% End of configuration area %%%%%%%%%%%%%%%%%%%%
      
 offset = center - [width, height]./2;
 vertecies = origin;
@@ -129,4 +107,4 @@ scatter(origin(1), origin(2), 45, '*','r','LineWidth',1); hold on;
 scatter(vertecies(:,1), vertecies(:,2), 10,linspace(1,10,length(vertecies(:,1))),'filled'); hold on;
 plot(edges.x', edges.y'); hold on;
 
-RRT_obstacles_plot_poly(gca, poly);
+plot_obstacle_poly(gca, poly);
