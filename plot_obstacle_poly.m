@@ -1,4 +1,4 @@
-function plot_obstacle_poly(ax, poly)
+function plot_obstacle_poly(ax, poly, color)
 shape_count = size(poly, 2);
 for i = 1:shape_count
     crnt_poly = poly{i};
@@ -15,7 +15,10 @@ for i = 1:shape_count
         crnt_poly(poly_size(1), :) = crnt_poly(1, :);    
     end
     %seg_count = poly_size(1) - 1;
-    
-    plot(ax, crnt_poly(:,1), crnt_poly(:,2)); hold on;
+    if( nargin == 2 )
+        plot(ax, crnt_poly(:,1), crnt_poly(:,2)); hold on;
+    else
+        plot(ax, crnt_poly(:,1), crnt_poly(:,2), color); hold on;
+    end
 end
 end
