@@ -1,12 +1,8 @@
- Dubins-RRT-for-MATLAB
+# Dubins-RRT-for-MATLAB
  
 # About
 RRT (Rapidly-Exploring Random Trees) using Dubins curve, with collision check in MATLAB  
-
-(image: RRT_Dubins_obstacles.m with 100, 1000, 10000 iterations respectively)  
-<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-hundrede-iterations.png" alt="100 iterations" width="300">
-<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-thousand-iterations.png" alt="100 iterations" width="300">
-<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/ten-thousand-iterations.png" alt="100 iterations" width="300">
+![1000 Dubins RRT iteration with collision test](test_results/one-thousand-iterations.png?raw=true "1000 Dubins RRT iteration with collision test")
  
 # Intro
 RRT, the Rapidly-Exploring Random Trees is a ramdomized method of exploring within dimensions. This method can effectively generate a path to reach any point within certain limited steps due to its random characteristics. This method is proprosed by LaValle, Steven M. in October 1998, in his technical report to Computer Science Department of Iowa State University as "Rapidly-exploring random trees: A new tool for path planning" Today, multiple variation of RRT method is widely applied with path planning problem among UAVs for ground based, aerial, and marinetime vehicles.   
@@ -34,6 +30,16 @@ There are 4 main programs, see the comments in each file for more detail
    Final complete algorithm: RRT with Dubins curve and collision check
    
 Note: All plotting related function have the filename starts with plot_xxxxx_xxxx.m.
+### Execution Time
+* RRT_Dubins_obstacles.m  
+  The searching function for now is a dumb exhaustive search over a un-ordered list, program running time grows exponentially with amount of iterations. Here are some of the resutls, note the time will very each time you run the program:
+  * **i = 100**  0.198196 / 0.292975 sec
+  * **i = 1000** 11.011770 sec
+  * **i = 10000** 1121.169987 sec  
+(image: RRT_Dubins_obstacles.m with 100, 1000, 10000 iterations respectively)  
+<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-hundrede-iterations.png" alt="100 iterations" width="300">
+<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-thousand-iterations.png" alt="100 iterations" width="300">
+<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/ten-thousand-iterations.png" alt="100 iterations" width="300">
  
 # References 
 * Steven M. LaValle "Rapidly-Exploring Random Trees: A New Tool for Path Planning" 1998, tech. rpt C.S.Dept, Iowa State U 
@@ -52,7 +58,9 @@ Note: All plotting related function have the filename starts with plot_xxxxx_xxx
 Released under GPLv3 license  
 Copyright (c) 2018 Ewing Kang  
   
-Note: Dubins path generator is a MATLAB re-written from Andrew Walker's work, which was originally distributed under MIT license in C language.
+Dubins path generator is a MATLAB re-written from Andrew Walker's work, which was originally distributed under MIT license in C language.  
+
+See [LICENSE](LICENSE.TXT) file for more info.
 
 # TODOS
 * [x] RRT+Dubins+collisioncheck
