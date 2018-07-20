@@ -33,13 +33,12 @@ Note: All plotting related function have the filename starts with plot_xxxxx_xxx
 ### Execution Time
 * RRT_Dubins_obstacles.m  
   The searching function for now is a dumb exhaustive search over a un-ordered list, program running time grows exponentially with amount of iterations. Here are some of the resutls, note the time will very each time you run the program:
-  * **i = 100**  0.198196 / 0.292975 sec
-  * **i = 1000** 11.011770 sec
+  * **i = 100**  0.198196 / 0.292975 sec 
+  * **i = 1000** 11.011770 sec 
   * **i = 10000** 1121.169987 sec  
-(image: RRT_Dubins_obstacles.m with 100, 1000, 10000 iterations respectively)  
-<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-hundrede-iterations.png" alt="100 iterations" width="300">
-<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-thousand-iterations.png" alt="100 iterations" width="300">
-<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/ten-thousand-iterations.png" alt="100 iterations" width="300">
+      
+      
+<img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-hundrede-iterations.png" alt="100 iterations" width="280"><img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-thousand-iterations.png" alt="1000 iterations" width="275"><img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/ten-thousand-iterations.png" alt="10000 iterations" width="285">
  
 # References 
 * Steven M. LaValle "Rapidly-Exploring Random Trees: A New Tool for Path Planning" 1998, tech. rpt C.S.Dept, Iowa State U 
