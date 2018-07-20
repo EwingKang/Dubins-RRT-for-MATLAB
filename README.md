@@ -1,9 +1,9 @@
-# Dubins-RRT-for-MATLAB
+ Dubins-RRT-for-MATLAB
  
 # About
 RRT (Rapidly-Exploring Random Trees) using Dubins curve, with collision check in MATLAB  
 
-(image: RRT_Dubins_obstacles.m with 100, 1000, 10000 iterations respectively)
+(image: RRT_Dubins_obstacles.m with 100, 1000, 10000 iterations respectively)  
 <img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-hundrede-iterations.png" alt="100 iterations" width="300">
 <img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/one-thousand-iterations.png" alt="100 iterations" width="300">
 <img src="https://github.com/EwingKang/Dubins-RRT-for-MATLAB/raw/master/test_results/ten-thousand-iterations.png" alt="100 iterations" width="300">
