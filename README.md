@@ -52,6 +52,7 @@ Note: All plotting related function have the filename starts with plot_xxxxx_xxx
 * arc-line collision check1: http://doswa.com/2009/07/13/circle-segment-intersectioncollision.html
 * arc-line collision check2: https://codereview.stackexchange.com/questions/86421/line-segment-to-circle-collision-algorithm
 * arc-line collision check3: https://math.stackexchange.com/questions/1316803/algorithm-to-find-a-line-segment-is-passing-through-a-circle-or-not
+* Tree Data Structure: https://www.scaler.com/topics/data-structures/tree-data-structure/
    
 # License
 Released under GPLv3 license  
